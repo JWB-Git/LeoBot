@@ -67,5 +67,16 @@ async def memory(ctx):
     memory = random.choice(memories)
 
     await ctx.send(memory)
+
+@bot.command(name='roar')
+async def roar(ctx, length: int):
+    roar_str = 'R'
+    for i in range(length):
+        roar_str += 'o'
+    for i in range(length):
+        roar_str += 'a'
+    roar_str += 'r'
+
+    await ctx.send(roar_str)
     
 bot.run(TOKEN)
