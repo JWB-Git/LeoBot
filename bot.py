@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
 bot = commands.Bot(command_prefix='!')
 
@@ -70,13 +69,16 @@ async def memory(ctx):
 
 @bot.command(name='roar')
 async def roar(ctx, length: int):
-    roar_str = 'R'
-    for i in range(length):
-        roar_str += 'o'
-    for i in range(length):
-        roar_str += 'a'
-    roar_str += 'r'
+    if length > 999:
+        await ctx.send('I can\'t roar for that long!')
+    else:
+        roar_str = 'R'
+        for i in range(length):
+            roar_str += 'o'
+        for i in range(length):
+            roar_str += 'a'
+        roar_str += 'r'
 
-    await ctx.send(roar_str)
+        await ctx.send(roar_str)
     
 bot.run(TOKEN)
