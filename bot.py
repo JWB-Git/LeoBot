@@ -1,10 +1,13 @@
 import os
 import random
+import requests
+import json
 from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
 
 bot = commands.Bot(command_prefix='!')
 
@@ -54,14 +57,10 @@ async def adventure(ctx):
 
 @bot.command(name='memory', help='Leo says a random memory of his')
 async def memory(ctx):
-    memories = [
-        'I loved eating all the chocolate at Cadbury World when I went to Birmingham Chocolate Rally',
-        'I enjoyed exploring Bath on the Roman Rally Monopoly Run',
-        'I had great fun help run a Monopoly Run for City of Newcastle Scouts!',
-        'I really liked going to the North Tyneside coast, even if it was cold and windy!',
-        'I loved visiting Beamish and riding on the trams!',
-        'I had an amazing time at Northern Freshers in Hull, seeing Sally\'s Brothers and Sisters in the Deep'
-    ]
+    url = BASE_URL + 'read/memories.php'
+    r = requests.get(url = url)
+    data = r.json()
+    memories = data['memories']
 
     memory = random.choice(memories)
 
