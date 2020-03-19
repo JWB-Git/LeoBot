@@ -63,6 +63,11 @@ async def leo(ctx, arg: str):
             f'You can\'t steal me! Sally (:sally:) is NUSSAGG\'s stealable mascot!'
         )
 
+    elif arg == "drink":
+        await ctx.send(
+            f'Cheers! :beers:'
+        )
+
     elif arg == "adventure":
         mascotData = dataRequest('read/mascots.php')
         locationData = dataRequest('read/locations.php')
@@ -97,9 +102,11 @@ async def leo(ctx, arg: str):
 async def roar(ctx, length: int):
     if length == 69:
         await ctx.send(f':rolling_eyes:')
+    elif length == 666:
+        await ctx.send(f':japanese_ogre:')
     elif length <= 0:
         await ctx.send(f'How would I roar for zero or negative length!?')
-    elif length < 0 and length > 999:
+    elif length > 999:
         await ctx.send(f'I can\'t roar for that long!')
     else:
         roar_str = 'R'
