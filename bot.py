@@ -10,13 +10,13 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
 
 ## USEFUL FUNCTIONS ##
-def dataRequest(path):
+def dataRequest(path): #Returns JSON from Database API Calls
     url = BASE_URL + path
     r = requests.get(url = url)
     return r.json()
 
 ## BASIC TEXT COMMANDS ##
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!') #All commands will start with !
 
 @bot.command(name='leo')
 async def leo(ctx, arg: str):
