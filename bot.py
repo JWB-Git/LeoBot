@@ -2,6 +2,7 @@ import os
 import random
 import requests
 import json
+import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -20,7 +21,21 @@ bot = commands.Bot(command_prefix='!') #All commands will start with !
 
 @bot.command(name='leo')
 async def leo(ctx, arg: str):
-    if arg == "hi":
+    if arg == "help":
+        embed = discord.Embed(title="Leo the Lion Help", description="Available Commands:", colour=0x7413dc)
+        
+        embed.add_field(name="!leo hi", value="Leo will say hi to you!")
+        embed.add_field(name="!leo sally", value="Leo will talk about Sally the Seahorse")
+        embed.add_field(name="!leo git", value="A link to the LeoBot git will be sent")
+        embed.add_field(name="!leo rally", value="Leo will talk about Viking Rally")
+        embed.add_field(name="!leo steal", value="Try and steal leo, but it won't end well!")
+        embed.add_field(name="!leo adventure", value="Leo will say what adventure he wants to go on next!")
+        embed.add_field(name="!leo memory", value="Leo will tell you one of his favourite memories with NUSSAGG")
+        embed.add_field(name="!roar <length>", value="Leo will roar for the length specified (up to a value of 999)")
+
+        await ctx.send(embed = embed)
+
+    elif arg == "hi":
         await ctx.send(
             f'Hi {ctx.author.mention}!'
         )
@@ -76,13 +91,15 @@ async def leo(ctx, arg: str):
             await ctx.send(f'I can\'t seem to remember anything at the minute :tired_face:. Please try again later!')
 
     else:
-        await ctx.send(f'I don\'t understand you!') 
+        await ctx.send(f'I don\'t understand you! Type \'!leo help\' to learn what I can do')
 
 @bot.command(name='roar', help='Make Leo Roar!')
 async def roar(ctx, length: int):
     if length == 69:
         await ctx.send(f':rolling_eyes:')
-    elif length > 999:
+    elif length <= 0:
+        await ctx.send(f'How would I roar for zero or negative length!?')
+    elif length < 0 and length > 999:
         await ctx.send(f'I can\'t roar for that long!')
     else:
         roar_str = 'R'
