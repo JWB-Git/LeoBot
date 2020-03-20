@@ -10,6 +10,8 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
 
+previousPhrase = ""
+
 ## USEFUL FUNCTIONS ##
 def dataRequest(path): #Returns JSON from Database API Calls
     url = BASE_URL + path
@@ -18,6 +20,15 @@ def dataRequest(path): #Returns JSON from Database API Calls
 
 ## BASIC TEXT COMMANDS ##
 bot = commands.Bot(command_prefix='!') #All commands will start with !
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    if message.author.id == 689574093040779293:
+        await message.channel.send('Hi Erin :scotland:!')
+
+    await bot.process_commands(message)
 
 @bot.command(name='leo')
 async def leo(ctx, arg: str):
@@ -42,7 +53,7 @@ async def leo(ctx, arg: str):
 
     elif arg == "sally":
         await ctx.send(
-            f'Sally (:sally:) is my Best Friend! We go on all our adventures together but we have to protect her, as other SSAGOers like to steal her! :frowning:'
+            f'Sally (:Sally:) is my Best Friend! We go on all our adventures together but we have to protect her, as other SSAGOers like to steal her! :frowning:'
         )
 
     elif arg == "git":
@@ -54,13 +65,13 @@ async def leo(ctx, arg: str):
 
     elif arg == "rally":
         await ctx.send(
-            f'Did you know my friends from NUSSAGG and DUSSAG are hosting Viking Rally in November 2021! Please come join us for a weekend of great fun in the Toon '+
+            f'Did you know my friends from NUSSAGG and DUSAGG are hosting Viking Rally in November 2021! Please come join us for a weekend of great fun in the Toon '+
             'and surrounding areas. Its a canny place to be!'
         )
 
     elif arg == "steal":
         await ctx.send(
-            f'You can\'t steal me! Sally (:sally:) is NUSSAGG\'s stealable mascot!'
+            f'You can\'t steal me! Sally (:Sally:) is NUSSAGG\'s stealable mascot!'
         )
 
     elif arg == "drink":
@@ -95,8 +106,39 @@ async def leo(ctx, arg: str):
         else:
             await ctx.send(f'I can\'t seem to remember anything at the minute :tired_face:. Please try again later!')
 
+    elif arg == "geordie":
+        data = dataRequest('read/phrases.php')
+
+        if data['success'] == 1:
+            phrases = data['phrases']
+            phrase = random.choice(phrases)
+            global previousPhrase
+            previousPhrase = phrase['id']
+            await ctx.send(phrase['geordie'])
+        else:
+            await ctx.send(f'I can\'t seem to remember anything at the minute :tired_face:. Please try again later!')
+
+    elif arg == "translate":
+        if previousPhrase == "":
+            await ctx.send(f'I haven\'t said any geordie to translate!')
+        else:
+            requestPath = "read/translate.php?id=" + previousPhrase
+            data = dataRequest(requestPath)
+
+            if data['success'] == 1:
+                translation = data['translation']
+                usage = data['usage']
+                await ctx.send(
+                    f'Translation: {translation} \nUsage: {usage}'
+                )
+            else:
+                ctx.send(f'I can\'t translate right now!')
+
+
+
     else:
         await ctx.send(f'I don\'t understand you! Type \'!leo help\' to learn what I can do')
+    
 
 @bot.command(name='roar', help='Make Leo Roar!')
 async def roar(ctx, length: int):
