@@ -175,7 +175,7 @@ async def leo(ctx, *args: str):
 
                 #Specific ID's
                 jackId = 311556785498619904
-                erinId = 691030078762778674
+                erinId = [691030078762778674, 689574093040779293]
                 nussaggIds = [689742684239298572, 689579955012632586, 689805495988781074]
 
                 #Specific Roles
@@ -185,7 +185,7 @@ async def leo(ctx, *args: str):
 
                 if tagged.id == jackId:
                     await ctx.send(f'I love {tagged.mention}, after all, he programmed my speech!')
-                elif tagged.id == erinId:
+                elif tagged.id in erinId:
                     await ctx.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
                 elif tagged.id in nussaggIds:
                     await ctx.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
