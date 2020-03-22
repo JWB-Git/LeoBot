@@ -8,21 +8,25 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+SERVER_ID = os.getenv('SSAGO_SERVER')
 BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
+
+bot = commands.Bot(command_prefix='?') #All commands will start with !
 
 previousPhrase = ""
 
 ## USEFUL FUNCTIONS ##
-def dataRequest(path): #Returns JSON from Database API Calls
+#Returns JSON from Database API Calls
+def dataRequest(path):
     url = BASE_URL + path
     r = requests.get(url = url)
     return r.json()
 
+#Method for an invalid call message
 async def invalidCommand(ctx):
     await ctx.send(f'I don\'t understand you! Type \'?leo help\' to learn what I can do')
 
 ## BASIC TEXT COMMANDS ##
-bot = commands.Bot(command_prefix='?') #All commands will start with !
 
 # Replies every time Erin messages - As requested by Erin XD
 @bot.event
@@ -54,6 +58,7 @@ async def leo(ctx, *args: str):
             embed.add_field(name="?leo geordie", value="Leo will say some geordie")
             embed.add_field(name="?leo translate", value="Leo will translate the geordie he just said")
             embed.add_field(name="?leo roar <length>", value="Leo will roar for the length specified (up to a value of 999)")
+            embed.add_field(name="?leo opinion <user>", value="Leo will say his opinion on the tagged person")
 
             await ctx.send(embed = embed)
 
@@ -162,12 +167,44 @@ async def leo(ctx, *args: str):
         arg2 = args[1]
 
         # ?leo test
-        if arg1 == "test":
-            await ctx.send(f'Test: {arg2}')
+        if arg1 == "opinion":
+            if arg2.index("@") == 1: #Indicates it is a username
+                tagged = ctx.message.mentions[0]
+
+                #Special Cases
+
+                #Specific ID's
+                jackId = 311556785498619904
+                erinId = 691030078762778674
+                nussaggIds = [689742684239298572, 689579955012632586, 689805495988781074]
+
+                #Specific Roles
+                mascot = discord.utils.get(ctx.message.guild.roles, name="Mascot")
+                execMascot = discord.utils.get(ctx.message.guild.roles, name="Exec Mascot")
+                execMember = discord.utils.get(ctx.message.guild.roles, name="Exec")
+
+                if tagged.id == jackId:
+                    await ctx.send(f'I love {tagged.mention}, after all, he programmed my speech!')
+                elif tagged.id == erinId:
+                    await ctx.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
+                elif tagged.id in nussaggIds:
+                    await ctx.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
+                elif mascot in tagged.roles or execMascot in tagged.roles:
+                    await ctx.send(f'{tagged.mention} is a bot just like me, so is pretty cool')
+                elif execMember in tagged.roles:
+                    await ctx.send(f'I like {tagged.mention} as they keep SSAGO going with the rest of the Exec! :smiley:')
+
+                #Normal Cases
+                else:
+                    await ctx.send(f'{tagged.mention} is pretty cool')
+
+            else:
+                await ctx.send(f'I\'m sorry, I don\'t know this person :frowning:')
 
         elif arg1 == "roar":
             length = int(arg2)
 
+            #Special Cases
             if length == 69:
                 await ctx.send(f':rolling_eyes:')
             elif length == 666:
@@ -176,6 +213,8 @@ async def leo(ctx, *args: str):
                 await ctx.send(f'How would I roar for zero or negative length!?')
             elif length > 999:
                 await ctx.send(f'I can\'t roar for that long!')
+
+            #Normal Roar
             else:
                 roar_str = 'R'
                 for i in range(length):
