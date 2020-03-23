@@ -28,15 +28,24 @@ async def invalidCommand(ctx):
 
 ## BASIC TEXT COMMANDS ##
 
-# Replies every time Erin messages - As requested by Erin XD
 @bot.event
 async def on_message(message):
+    #Return so Leo can't reply to himself
     if message.author == bot.user:
         return
+
+    #Replies every time Erin messages - As requested by Erin XD
     if message.author.id == 689574093040779293:
         await message.channel.send('Hi Erin :scotland:!')
 
-    await bot.process_commands(message)
+    #Chases james the sheep
+    if message.content == "baaaaaa, run away!":
+        jamesId = '<@690154676938866719>'
+        await message.channel.send(f'My favourite food is Lamb so you better run {jamesId}! :drool:')
+
+    #After all these conditions are run, process commands
+    ctx = await bot.get_context(message)
+    await bot.invoke(ctx)
 
 @bot.command(name='leo')
 async def leo(ctx, *args: str):
@@ -174,18 +183,21 @@ async def leo(ctx, *args: str):
                 #Special Cases
 
                 #Specific ID's
+                leoId = 689751502700675072
                 jackId = 311556785498619904
-                erinId = [691030078762778674, 689574093040779293]
+                erinId = 691030078762778674
                 nussaggIds = [689742684239298572, 689579955012632586, 689805495988781074]
 
                 #Specific Roles
                 mascot = discord.utils.get(ctx.message.guild.roles, name="Mascot")
                 execMascot = discord.utils.get(ctx.message.guild.roles, name="Exec Mascot")
                 execMember = discord.utils.get(ctx.message.guild.roles, name="Exec")
-
-                if tagged.id == jackId:
+                
+                if tagged.id == leoId:
+                    await ctx.send(f'Hey, thats me!')
+                elif tagged.id == jackId:
                     await ctx.send(f'I love {tagged.mention}, after all, he programmed my speech!')
-                elif tagged.id in erinId:
+                elif tagged.id == erinId:
                     await ctx.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
                 elif tagged.id in nussaggIds:
                     await ctx.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
