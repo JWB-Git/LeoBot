@@ -8,14 +8,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-SERVER_ID = os.getenv('SSAGO_SERVER')
 BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
 
-bot = commands.Bot(command_prefix='?') #All commands will start with !
+bot = commands.Bot(command_prefix='?') #Init bot - all commands will start with ?
 
 previousPhrase = ""
 
 ## USEFUL FUNCTIONS ##
+
 #Returns JSON from Database API Calls
 def dataRequest(path):
     url = BASE_URL + path
@@ -25,6 +25,66 @@ def dataRequest(path):
 #Method for an invalid call message
 async def invalidCommand(ctx):
     await ctx.send(f'I don\'t understand you! Type \'?leo help\' to learn what I can do')
+
+## LEO FUNCTIONS ##
+## These are leo's longer functions, seperated from bot event to clean code slightly ##
+
+#roar for ?leo roar <length>
+async def roar(ctx, length):
+    #Special Cases
+    if length == 69:
+        await ctx.send(f':rolling_eyes:')
+    elif length == 666:
+        await ctx.send(f':japanese_ogre:')
+    elif length <= 0:
+        await ctx.send(f'How would I roar for zero or negative length!?')
+    elif length > 999:
+        await ctx.send(f'I can\'t roar for that long!')
+
+    #Normal Roar
+    else:
+        roar_str = 'R'
+        for i in range(length):
+            roar_str += 'o'
+        for i in range(length):
+            roar_str += 'a'
+        roar_str += 'r'
+
+        await ctx.send(roar_str)
+
+#opinion for ?leo opinion <user>
+async def opinion(ctx):
+    tagged = ctx.message.mentions[0]
+
+    #Special Cases
+
+    #Specific ID's
+    leoId = 689751502700675072
+    jackId = 311556785498619904
+    erinId = 691030078762778674
+    nussaggIds = [689742684239298572, 689579955012632586, 689805495988781074]
+
+    #Specific Roles
+    mascot = discord.utils.get(ctx.message.guild.roles, name="Mascot")
+    execMascot = discord.utils.get(ctx.message.guild.roles, name="Exec Mascot")
+    execMember = discord.utils.get(ctx.message.guild.roles, name="Exec")
+    
+    if tagged.id == leoId:
+        await ctx.send(f'Hey, thats me!')
+    elif tagged.id == jackId:
+        await ctx.send(f'I love {tagged.mention}, after all, he programmed my speech!')
+    elif tagged.id == erinId:
+        await ctx.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
+    elif tagged.id in nussaggIds:
+        await ctx.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
+    elif mascot in tagged.roles or execMascot in tagged.roles:
+        await ctx.send(f'{tagged.mention} is a bot just like me, so is pretty cool')
+    elif execMember in tagged.roles:
+        await ctx.send(f'I like {tagged.mention} as they keep SSAGO going with the rest of the Exec! :smiley:')
+
+    #Normal Cases
+    else:
+        await ctx.send(f'{tagged.mention} is pretty cool')
 
 ## BASIC TEXT COMMANDS ##
 
@@ -168,79 +228,32 @@ async def leo(ctx, *args: str):
                 else:
                     ctx.send(f'I can\'t translate right now!')
 
-        else:
+        else: #Arguments are not valid for any 1 arg commands
             await invalidCommand(ctx)
 
     elif len(args) == 2:
         arg1 = args[0]
         arg2 = args[1]
 
-        # ?leo test
+        # ?leo opinion <user>
         if arg1 == "opinion":
             if arg2.index("@") == 1: #Indicates it is a username
-                tagged = ctx.message.mentions[0]
-
-                #Special Cases
-
-                #Specific ID's
-                leoId = 689751502700675072
-                jackId = 311556785498619904
-                erinId = 691030078762778674
-                nussaggIds = [689742684239298572, 689579955012632586, 689805495988781074]
-
-                #Specific Roles
-                mascot = discord.utils.get(ctx.message.guild.roles, name="Mascot")
-                execMascot = discord.utils.get(ctx.message.guild.roles, name="Exec Mascot")
-                execMember = discord.utils.get(ctx.message.guild.roles, name="Exec")
-                
-                if tagged.id == leoId:
-                    await ctx.send(f'Hey, thats me!')
-                elif tagged.id == jackId:
-                    await ctx.send(f'I love {tagged.mention}, after all, he programmed my speech!')
-                elif tagged.id == erinId:
-                    await ctx.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
-                elif tagged.id in nussaggIds:
-                    await ctx.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
-                elif mascot in tagged.roles or execMascot in tagged.roles:
-                    await ctx.send(f'{tagged.mention} is a bot just like me, so is pretty cool')
-                elif execMember in tagged.roles:
-                    await ctx.send(f'I like {tagged.mention} as they keep SSAGO going with the rest of the Exec! :smiley:')
-
-                #Normal Cases
-                else:
-                    await ctx.send(f'{tagged.mention} is pretty cool')
-
+                await opinion(ctx)
             else:
                 await ctx.send(f'I\'m sorry, I don\'t know this person :frowning:')
 
+        # ?leo roar <length>
         elif arg1 == "roar":
-            length = int(arg2)
+            try:
+                length = int(arg2)
+                await roar(ctx, length)         
+            except ValueError:
+                await ctx.send(f'I can\'t roar for a non integer length!')
 
-            #Special Cases
-            if length == 69:
-                await ctx.send(f':rolling_eyes:')
-            elif length == 666:
-                await ctx.send(f':japanese_ogre:')
-            elif length <= 0:
-                await ctx.send(f'How would I roar for zero or negative length!?')
-            elif length > 999:
-                await ctx.send(f'I can\'t roar for that long!')
-
-            #Normal Roar
-            else:
-                roar_str = 'R'
-                for i in range(length):
-                    roar_str += 'o'
-                for i in range(length):
-                    roar_str += 'a'
-                roar_str += 'r'
-
-                await ctx.send(roar_str)
-
-        else:
+        else: #Arguments are not valid for any 2 arg commands
             await invalidCommand(ctx)
 
-    else:
+    else: #Number of arguments is not valid for any commands
         await invalidCommand(ctx)
     
 bot.run(TOKEN)
