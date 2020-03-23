@@ -29,6 +29,41 @@ async def invalidCommand(ctx):
 ## LEO FUNCTIONS ##
 ## These are leo's longer functions, seperated from bot event to clean code slightly ##
 
+##help for ?leo help
+async def help(ctx):
+    embed = discord.Embed(title="Leo the Lion Help", description="Available Commands:", colour=0x7413dc)
+            
+    embed.add_field(name="?leo hi", value="Leo will say hi to you!")
+    embed.add_field(name="?leo sally", value="Leo will talk about Sally the Seahorse")
+    embed.add_field(name="?leo git", value="A link to the LeoBot git will be sent")
+    embed.add_field(name="?leo rally", value="Leo will talk about Viking Rally")
+    embed.add_field(name="?leo steal", value="Try and steal leo, but it won't end well!")
+    embed.add_field(name="?leo drink", value="Leo will take a drink")
+    embed.add_field(name="?leo adventure", value="Leo will say what adventure he wants to go on next!")
+    embed.add_field(name="?leo memory", value="Leo will tell you one of his favourite memories with NUSSAGG")
+    embed.add_field(name="?leo geordie", value="Leo will say some geordie")
+    embed.add_field(name="?leo translate", value="Leo will translate the geordie he just said")
+    embed.add_field(name="?leo roar <length>", value="Leo will roar for the length specified (up to a value of 999)")
+    embed.add_field(name="?leo opinion <user>", value="Leo will say his opinion on the tagged person")
+
+    await ctx.send(embed = embed)
+
+async def catch(message):
+    #Get all bots into array
+    bot = discord.utils.get(message.guild.roles, name="Mascot")
+
+    botArray=[] #Array for all bot id's to be stored
+
+    for member in message.guild.members:
+        if bot in member.roles:
+            botArray.append(member.id)
+
+    throwTo = "<@" + str(random.choice(botArray)) + ">"
+
+    await message.channel.send(f'Leo catches the ball and throws to {throwTo}')
+
+    
+
 #roar for ?leo roar <length>
 async def roar(ctx, length):
     #Special Cases
@@ -95,13 +130,17 @@ async def on_message(message):
         return
 
     #Replies every time Erin messages - As requested by Erin XD
-    if message.author.id == 689574093040779293:
+    elif message.author.id == 689574093040779293:
         await message.channel.send('Hi Erin :scotland:!')
 
     #Chases james the sheep
-    if message.content == "baaaaaa, run away!":
+    elif message.content == "baaaaaa, run away!":
         jamesId = '<@690154676938866719>'
         await message.channel.send(f'My favourite food is Lamb so you better run {jamesId}! :drool:')
+
+    #Catches and throws the ball
+    elif "<@!689751502700675072> catch" in message.content:
+        await catch(message)
 
     #After all these conditions are run, process commands
     ctx = await bot.get_context(message)
@@ -114,22 +153,7 @@ async def leo(ctx, *args: str):
         
         # ?leo help
         if arg == "help":
-            embed = discord.Embed(title="Leo the Lion Help", description="Available Commands:", colour=0x7413dc)
-            
-            embed.add_field(name="?leo hi", value="Leo will say hi to you!")
-            embed.add_field(name="?leo sally", value="Leo will talk about Sally the Seahorse")
-            embed.add_field(name="?leo git", value="A link to the LeoBot git will be sent")
-            embed.add_field(name="?leo rally", value="Leo will talk about Viking Rally")
-            embed.add_field(name="?leo steal", value="Try and steal leo, but it won't end well!")
-            embed.add_field(name="?leo drink", value="Leo will take a drink")
-            embed.add_field(name="?leo adventure", value="Leo will say what adventure he wants to go on next!")
-            embed.add_field(name="?leo memory", value="Leo will tell you one of his favourite memories with NUSSAGG")
-            embed.add_field(name="?leo geordie", value="Leo will say some geordie")
-            embed.add_field(name="?leo translate", value="Leo will translate the geordie he just said")
-            embed.add_field(name="?leo roar <length>", value="Leo will roar for the length specified (up to a value of 999)")
-            embed.add_field(name="?leo opinion <user>", value="Leo will say his opinion on the tagged person")
-
-            await ctx.send(embed = embed)
+            await help(ctx)
 
         # ?leo hi
         elif arg == "hi":
