@@ -12,7 +12,7 @@ BASE_URL = os.getenv('BASE_URL') #Base URL for API Calls
 
 bot = commands.Bot(command_prefix='?') #Init bot - all commands will start with ?
 
-previousPhrase = ""
+previousPhrase = "" #Global variable for Geordie and Translate to use
 
 ## USEFUL FUNCTIONS ##
 
@@ -26,6 +26,8 @@ def dataRequest(path):
 async def invalidCommand(ctx):
     await ctx.send(f'I don\'t understand you! Type \'?leo help\' to learn what I can do')
 
+
+
 ## LEO FUNCTIONS ##
 ## These are leo's longer functions, seperated from bot event to clean code slightly ##
 
@@ -34,8 +36,9 @@ async def help(ctx):
     embed = discord.Embed(title="Leo the Lion Help", description="Available Commands:", colour=0x7413dc)
             
     embed.add_field(name="?leo hi", value="Leo will say hi to you!")
-    embed.add_field(name="?leo sally", value="Leo will talk about Sally the Seahorse")
+    embed.add_field(name="?leo sally", value="Leo will talk about Sally the Seahorse <:Sally:689616621576257557>")
     embed.add_field(name="?leo git", value="A link to the LeoBot git will be sent")
+    embed.add_field(name="?leo insta", value="A link to Leo and Sally's <:Sally:689616621576257557> Instagram will be sent")
     embed.add_field(name="?leo rally", value="Leo will talk about Viking Rally")
     embed.add_field(name="?leo steal", value="Try and steal leo, but it won't end well!")
     embed.add_field(name="?leo drink", value="Leo will take a drink")
@@ -174,6 +177,9 @@ async def leo(ctx, *args: str):
                 '\n' +
                 'https://github.com/JWB-Git/LeoBot'
             )
+
+        elif arg == "insta":
+            await ctx.send(f'Here is Sally <:Sally:689616621576257557> and mine Instagram. Make sure you give us a follow!\nhttps://www.instagram.com/nussaggsallyandleo/')
 
         # ?leo rally
         elif arg == "rally":
