@@ -1,3 +1,5 @@
 .env
 .vscode
 api/config/db_config.php
+commands/__pycache__
+assets/__pycache__
