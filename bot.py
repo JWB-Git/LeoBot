@@ -20,6 +20,9 @@ class LeoTheLion(discord.Client):
         super().__init__(**options)
         self.previousPhrase = ""
 
+    async def on_ready(self):
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Blaydon Races"))
+
     async def on_message(self, message: Message):
         if message.author == client.user:
             return
@@ -101,6 +104,9 @@ class LeoTheLion(discord.Client):
                         await opinion(self, message)
                     else:
                         await message.channel.length(f'I\'m sorry, I don\'t know this person :frowning:')
+
+                elif arg1 == "viking" and arg2=="rally":
+                    rally(self, message)
 
                 else:
                     await what(self, message)
