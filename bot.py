@@ -13,7 +13,7 @@ from commands.geordie import randomGeordie, translate
 from commands.opinion import opinion
 
 #Asset Imports (Constants etc.)
-from assets.constants import SALLY_TAG, ERIN_ID
+from assets.constants import SALLY_TAG, SALLY_EMOJI, ERIN_ID
 
 class LeoTheLion(discord.Client):
     def __init__(self, **options):
@@ -122,6 +122,7 @@ class LeoTheLion(discord.Client):
 
         if message.author.display_name == "Erin Jarvis":
             await message.channel.send('Hi Erin :scotland:!')
+            await message.add_reaction(SALLY_EMOJI)
 
 #Load Secrets
 load_dotenv()
