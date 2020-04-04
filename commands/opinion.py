@@ -18,6 +18,8 @@ async def opinion(self, message: Message):
     #Specific SSAGO Members
     jackId = 311556785498619904
     erinId = 689574093040779293
+    nussaggPresidentId = 689742684239298572
+    ellieId = 696051357567811614
 
     #Jack - Owner and Creator
     if tagged.id == jackId:
@@ -26,6 +28,10 @@ async def opinion(self, message: Message):
     #Erin - Requested Leo as a follower
     elif tagged.id == erinId:
         await message.channel.send(f'{tagged.mention} is my favourite Scot and should be yours too!')
+    
+    #NUSSAGG President
+    elif tagged.id == nussaggPresidentId:
+        await message.channel.send(f'Of course I love el presidente of NUSSAGG. {tagged.mention} is our coolest president since our last one!')
     
     #Other Bot Mascots
     elif mascot in tagged.roles or execMascot in tagged.roles:

@@ -114,7 +114,7 @@ class LeoTheLion(discord.Client):
         if message.content == "baaaaaa, run away!":
             await favouriteFood(self, message)
 
-        if message.author.id == ERIN_ID:
+        if message.author.display_name == "Erin Jarvis":
             await message.channel.send('Hi Erin :scotland:!')
 
 #Load Secrets
