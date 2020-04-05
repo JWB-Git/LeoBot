@@ -100,10 +100,10 @@ class LeoTheLion(discord.Client):
                         await message.channel.send(f'I can\'t roar for a non integer length!')
 
                 elif arg1 == "opinion":
-                    if "<@!" in arg2: #Indicates tagged user in arg2
+                    if "<@" in arg2: #Indicates tagged user in arg2
                         await opinion(self, message)
                     else:
-                        await message.channel.length(f'I\'m sorry, I don\'t know this person :frowning:')
+                        await message.channel.send(f'I\'m sorry, I don\'t know this person :frowning:')
 
                 elif arg1 == "viking" and arg2=="rally":
                     rally(self, message)

@@ -19,7 +19,7 @@ async def opinion(self, message: Message):
     jackId = 311556785498619904
     erinId = 689574093040779293
     nussaggPresidentId = 689742684239298572
-    ellieId = 696051357567811614
+    ellieId = 689661254788448265
 
     #Jack - Owner and Creator
     if tagged.id == jackId:
@@ -32,6 +32,10 @@ async def opinion(self, message: Message):
     #NUSSAGG President
     elif tagged.id == nussaggPresidentId:
         await message.channel.send(f'Of course I love el presidente of NUSSAGG. {tagged.mention} is our coolest president since our last one!')
+
+    #Ellie - The normal guardian of Leo
+    elif tagged.id == ellieId:
+        await message.channel.send(f'{tagged.mention} is the one who normally looks after me on and off events! I even met her neighbours cat!')
     
     #Other Bot Mascots
     elif mascot in tagged.roles or execMascot in tagged.roles:
