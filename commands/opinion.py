@@ -20,6 +20,8 @@ async def opinion(self, message: Message):
     erinId = 689574093040779293
     nussaggPresidentId = 689742684239298572
     ellieId = 689661254788448265
+    ellieId = 696051357567811614
+    timId = 689579955012632586
 
     #Jack - Owner and Creator
     if tagged.id == jackId:
@@ -37,6 +39,11 @@ async def opinion(self, message: Message):
     elif tagged.id == ellieId:
         await message.channel.send(f'{tagged.mention} is the one who normally looks after me on and off events! I even met her neighbours cat!')
     
+    #Tim - NUSSAGG old timmer
+    elif tagged.id == timId:
+        await message.channel.send(f'Whilst I love {tagged.mention}, after all he was President of NUSSAGG for 3 years,'
+                                   f' he\'s definitely an old timer! Will he ever leave NUSSAGG :rolling_eyes:')
+
     #Other Bot Mascots
     elif mascot in tagged.roles or execMascot in tagged.roles:
         await message.channel.send(f'{tagged.mention} is a bot just like me, so is pretty cool')
@@ -44,7 +51,7 @@ async def opinion(self, message: Message):
     #Exec Memebers
     elif execMember in tagged.roles:
         await message.channel.send(f'I like {tagged.mention} as they keep SSAGO going with the rest of the Exec! :smiley:')
-    
+
     #NUSSAGG Members
     elif nussagg in tagged.roles:
         await message.channel.send(f'{tagged.mention} looks after me well, I\'m  glad they are part of NUSSAGG!')
