@@ -11,6 +11,7 @@ from commands.help import *
 from commands.databaseAccessing import adventure, memory
 from commands.geordie import randomGeordie, translate
 from commands.opinion import opinion
+from commands.partyRing import *
 
 #Asset Imports (Constants etc.)
 from assets.constants import SALLY_TAG, SALLY_EMOJI, ERIN_ID
@@ -109,8 +110,30 @@ class LeoTheLion(discord.Client):
                     else:
                         await message.channel.send(f'I\'m sorry, I don\'t know this person :frowning:')
 
-                elif arg1 == "viking" and arg2=="rally":
+                elif arg1 == "viking" and arg2 == "rally":
                     await rally(self, message)
+
+                elif arg1 == "party" and arg2 == "ring":
+                    await partyRing(self, message)
+
+                else:
+                    await what(self, message)
+
+            #Three Argument
+            elif len(args) == 3:
+                arg1 = args[0]
+                arg2 = args[1]
+                arg3 = args[2]
+
+                if arg1 == "party" and arg2 == "ring":
+                    if arg3 == "join":
+                        await joinPartyRing(self, message)
+
+                    if arg3 == "members":
+                        await membersPartyRing(self, message)
+
+                    else:
+                        await what(self, message)
 
                 else:
                     await what(self, message)
@@ -124,6 +147,7 @@ class LeoTheLion(discord.Client):
         if message.content == "baaaaaa, run away!":
             await favouriteFood(self, message)
 
+        #If Erin Sends a Message
         if message.author.display_name == "Erin Jarvis":
             await message.channel.send('Hi Erin :scotland:!')
             await message.add_reaction(SALLY_EMOJI)
