@@ -37,8 +37,12 @@ class LeoTheLion(discord.Client):
             args = message.content[22:].lower().strip().split(" ")
             print(args)
 
+            #Say Command - Unknown amount of args
+            if args[0] == "say":
+                await sayArgs(self, args[1:], message)
+
             #One Argument Commands
-            if len(args) == 1:
+            elif len(args) == 1:
                 arg = args[0]
 
                 if arg == "":
@@ -106,7 +110,7 @@ class LeoTheLion(discord.Client):
                         await message.channel.send(f'I\'m sorry, I don\'t know this person :frowning:')
 
                 elif arg1 == "viking" and arg2=="rally":
-                    rally(self, message)
+                    await rally(self, message)
 
                 else:
                     await what(self, message)

@@ -2,7 +2,7 @@ import discord
 from discord import Message
 from discord.ext import commands
 
-from assets.constants import SALLY_TAG, SALLY_EMOJI, JAMES_TAG
+from assets.constants import SALLY_TAG, SALLY_EMOJI, JAMES_TAG, LEO_ID
 
 async def hello(self, message: Message):
     await message.channel.send(f'Hello {message.author.mention}')
@@ -18,7 +18,7 @@ async def mentioned(self, message: Message):
     await message.channel.send(f'I was mentioned!?')
 
 async def what(self, message: Message):
-    await message.channel.send(f'Sorry, I didn\'t quite understand that! Type @Leo The Lion help for my commands')
+    await message.channel.send(f'Sorry, I didn\'t quite understand that! Type <@{LEO_ID}> help for my commands')
 
 async def sally(self, message: Message):
     await message.channel.send(f'{SALLY_TAG} {SALLY_EMOJI} is my best friend! We go on all our adventures together but we have to protect her, as other SSAGOers like to steal her! :frowning:')
@@ -44,6 +44,13 @@ async def favouriteFood(self, message: Message):
 
 async def say(self, say: str, message: Message):
     await message.channel.send(say)
+
+async def sayArgs(self, args: list, message: Message):
+    string = ""
+    for arg in args:
+        string += arg + " "
+
+    await say(self, string, message)
 
 async def roar(self, length: int, message: Message):
     roar = ""

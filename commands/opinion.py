@@ -15,7 +15,8 @@ async def opinion(self, message: Message):
     execMember = discord.utils.get(message.guild.roles, name="Exec")
     nussagg = discord.utils.get(message.guild.roles, name="NUSSAGG")
 
-    #Specific SSAGO Members
+    #Specific SSAGO Members - Not in the assets file because python import
+    #where being weird.
     jackId = 311556785498619904
     erinId = 689574093040779293
     nussaggPresidentId = 689742684239298572
