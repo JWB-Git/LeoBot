@@ -42,6 +42,10 @@ class LeoTheLion(discord.Client):
             if args[0] == "say":
                 await sayArgs(self, args[1:], message)
 
+            #Saving Sally
+            if args[1] == "pounced":
+                await savingSally(self, message)
+
             #One Argument Commands
             elif len(args) == 1:
                 arg = args[0]
@@ -129,7 +133,7 @@ class LeoTheLion(discord.Client):
                     if arg3 == "join":
                         await joinPartyRing(self, message)
 
-                    if arg3 == "members":
+                    elif arg3 == "members":
                         await membersPartyRing(self, message)
 
                     else:
@@ -148,7 +152,7 @@ class LeoTheLion(discord.Client):
             await favouriteFood(self, message)
 
         #If Erin Sends a Message
-        if message.author.display_name == "Erin Jarvis":
+        elif message.author.display_name == "Erin Jarvis":
             await message.channel.send('Hi Erin :scotland:!')
             await message.add_reaction(SALLY_EMOJI)
 

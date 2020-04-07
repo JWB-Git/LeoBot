@@ -2,6 +2,8 @@ import discord
 from discord import Message
 from discord.ext import commands
 
+import random
+
 from assets.constants import SALLY_TAG, SALLY_EMOJI, JAMES_TAG, LEO_ID
 
 async def hello(self, message: Message):
@@ -44,6 +46,14 @@ async def favouriteFood(self, message: Message):
 
 async def say(self, say: str, message: Message):
     await message.channel.send(say)
+
+async def savingSally(self, message: Message):
+    ranInt = random.randint(0, 1)
+
+    if ranInt == 1:
+        await message.channel.send(f'Glad I could help {SALLY_TAG}!')
+    else:
+        await roar(self, 10, message)
 
 async def sayArgs(self, args: list, message: Message):
     string = ""
