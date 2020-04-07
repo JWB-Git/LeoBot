@@ -28,10 +28,6 @@ class LeoTheLion(discord.Client):
         if message.author == client.user:
             return
 
-        #Ignore Sally
-        if message.author.display_name == "SallyBot":
-            return
-
         #Leo is mentioned
         if message.mentions and message.mentions[0].name == 'Leo the Lion':
             #Get Arguments
