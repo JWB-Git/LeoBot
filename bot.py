@@ -152,6 +152,12 @@ class LeoTheLion(discord.Client):
         elif message.author.id == ERIN_ID:
             await message.channel.send('Hi Erin :scotland:!')
             await message.add_reaction(SALLY_EMOJI)
+            
+        # Add a NUSSAGG react and Meme Spork react to any memes a NUSSAGG member posts
+        if (message.channel.id == 689401725005725709) and \
+                (message.guild.get_role(699975448263786558) in message.author.roles) and (len(message.attachments) > 0):
+            await message.add_reaction("<NUSSAGG:689608898239397888>")
+            await message.add_reaction("<memespork:770733860308516924>")
 
 #Load Secrets
 load_dotenv()
