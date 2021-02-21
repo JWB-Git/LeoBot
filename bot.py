@@ -27,6 +27,10 @@ class LeoTheLion(discord.Client):
     async def on_message(self, message: Message):
         if message.author == client.user:
             return
+        
+        if message.guild and message.guild.get_role(692795753168634006) in message.author.roles:
+            await message.add_reaction("🐬")
+            await message.add_reaction("🪓")
 
         #Leo is mentioned
         if message.mentions and message.mentions[0].name == 'Leo the Lion':
