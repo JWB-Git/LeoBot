@@ -30,6 +30,7 @@ class Leo(commands.Bot):
         self.add_cog(basic.Basic())
         self.add_cog(data_access.DataAccess())
 
+
     # Set Activity
     async def on_ready(self):
         await commands.Bot.change_presence(self, activity=discord.Activity(type=discord.ActivityType.listening,
