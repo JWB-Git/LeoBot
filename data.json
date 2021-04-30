@@ -1,0 +1,163 @@
+{
+  "clubs": [
+    "Aberdeen University Scouts and Guides",
+    "Aberystwyth Student Scout and Guide Organisation",
+    "Bangor University Guides and Scouts",
+    "Bath University Guides and Scouts",
+    "Birmingham",
+    "Cambridge",
+    "Cardiff SSAGS",
+    "De Montfort University Guides and Scouts",
+    "Derby University Guides and Scouts",
+    "Dundee SSAGO",
+    "Durham University Scout and Guide Group",
+    "Edge Hill SSAGO",
+    "Exeter",
+    "Glasgow SSAGO",
+    "Greenwich and Kent SSAGO",
+    "Hertfordshire University Guides and Scouts",
+    "Huddersfield Student Scouts and Guides",
+    "Hull's Own Guides and Scouts",
+    "Indie",
+    "Keele SSAGO",
+    "Kernow SSAGO",
+    "Lancaster",
+    "Leeds",
+    "Leicester",
+    "Lincoln University Guides and Scouts",
+    "Liverpool University SSAGO",
+    "Loughborough",
+    "Manchester",
+    "Maynooth Rovers Irish Contingent",
+    "Newcastle Universities Student Scout and Guide Group",
+    "Nottingham",
+    "Oxford University Scout and Guide Group",
+    "Plymouth University Guides and Scouts",
+    "Portsmouth SSAGO",
+    "Royal Holloway University of London SSAGO",
+    "Salford Student Scout And Guide Organisation",
+    "Scouts and Girl Guides York",
+    "Sheffield Hallam Students Union Guides & Scouts",
+    "Solent SSAGO",
+    "Southampton SSAGO",
+    "Strath SSAGO",
+    "Student Scouting Nederland",
+    "Swansea University Guides and Scouts",
+    "UEA SSAGO (EGGS)",
+    "University of Bristol Guides and Scouts",
+    "University of Sheffield",
+    "University of South Wales SSAGO",
+    "University of the Highlands and Islands"
+  ],
+
+  "activities": [
+    "Go Hiking",
+    "Do a Quiz",
+    "Eat Pizza",
+    "Play Board Games",
+    "Build Sandcastles",
+    "Go Sailing",
+    "Have a Water Fight",
+    "Invade a Soft Play",
+    "Read Books",
+    "Work out the Meaning of Life",
+    "Attempt Taskmaster",
+    "Go Camping",
+    "Buy Random Items from the Middle of Lidl",
+    "Go Cycling",
+    "Have a Silent Disco",
+    "Steal Mascots",
+    "Discuss the Railways of Great Britain",
+    "Play Nintendo Switch Games",
+    "Watch a Movie",
+    "Play DnD",
+    "Do a Bakeoff",
+    "Declare Independence",
+    "Count in Binary",
+    "Spin around until they fall over",
+    "Paint Modern Art",
+    "Do an Interpretive Dance",
+    "Do Yoga",
+    "Do the Washing Up",
+    "Sew Badges",
+    "Have a Tea Tasting Competition"
+  ],
+
+  "phrases": [
+        {
+            "geordie": "Gadgie",
+            "translation": "Adult Male",
+            "phrase_usage": "See that gadgie at the front of the geet walla que..."
+        },
+        {
+            "geordie": "Geet Walla",
+            "translation": "Very Very Large",
+            "phrase_usage": "There's a geet walla queue at Asda, gan to Morriso..."
+        },
+        {
+            "geordie": "Haddaway",
+            "translation": "A generic proclamation of negativity or disbelief",
+            "phrase_usage": "Haddaway, man, there's nee way that gadgie is sign..."
+        },
+        {
+            "geordie": "Howay Man!",
+            "translation": "A generic proclamation of exhortation or encourage...",
+            "phrase_usage": "Howay man! We gannin' doon the Toon to beat the qu..."
+        },
+        {
+            "geordie": "Hyem",
+            "translation": "Home",
+            "phrase_usage": "This queue's got us propa radgie. I'm gan hyem."
+        },
+        {
+            "geordie": "Radgie",
+            "translation": "Temper Tantrum",
+            "phrase_usage": "That gadgie's gannin' proper radgie, like"
+        },
+        {
+            "geordie": "Wey aye, man!",
+            "translation": "A generic proclamation of positivity or agreement",
+            "phrase_usage": "Anytime you want to agree with someone without res..."
+        },
+        {
+            "geordie": "Beltas",
+            "translation": "Generic proclamation of joy",
+            "phrase_usage": "That club was purely belta on Saturday neet, like!"
+        },
+        {
+            "geordie": "Hinny",
+            "translation": "Wife, female companion or life partner",
+            "phrase_usage": "Dee us some scran, hinny, I'm clamming"
+        },
+        {
+            "geordie": "Hoy",
+            "translation": "Please pass or throw",
+            "phrase_usage": "Hoy a hamma owa here, hinny."
+        },
+        {
+            "geordie": "Clamming",
+            "translation": "Starving, hungry to the point of being in desperat...",
+            "phrase_usage": "Howay, man, hinny, I said I was clamming!"
+        },
+        {
+            "geordie": "Scran",
+            "translation": "Food",
+            "phrase_usage": "Where's me scran, hinny?"
+        },
+        {
+            "geordie": "Marra",
+            "translation": "Friend, colleague, workmate",
+            "phrase_usage": "Howay, man, marra, let's gan doon the pub for some..."
+        },
+        {
+            "geordie": "Canny",
+            "translation": "Good",
+            "phrase_usage": "Canny netty, that, like."
+        },
+        {
+            "geordie": "Bairn",
+            "translation": "Child",
+            "phrase_usage": "The bairn needs new sand shoes for school, hinny."
+        }
+    ]
+}
