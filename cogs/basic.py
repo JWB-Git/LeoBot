@@ -28,7 +28,8 @@ class Basic(commands.Cog):
             roar = ""
 
             # Special Cases
-            if length == "pi" or length == "🥧" or length == str(round(math.pi, len(length.split(".")[1]))):
+            if length == "pi" or length == "🥧" or \
+                    ("." in length and length == str(round(math.pi, len(length.split(".")[1])))):
                 roar = random.choice(["R🥧O🥧A🥧R", "```\n  R\nR   O\n  A\n```"])
             elif int(length) == 69:
                 roar = ':rolling_eyes:'
@@ -49,5 +50,5 @@ class Basic(commands.Cog):
                 roar += 'r'
 
             await ctx.send(roar)
-        except TypeError:
+        except (TypeError, ValueError):
             await ctx.send("I can\'t roar for an non integer length!")
