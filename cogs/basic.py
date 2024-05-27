@@ -52,3 +52,29 @@ class Basic(commands.Cog):
             await ctx.send(roar)
         except (TypeError, ValueError):
             await ctx.send("I can\'t roar for an non integer length!")
+
+
+    @commands.command(name="catch", brief="Play catch with me", help="Let's play catch together")
+    async def catch(self, ctx):
+        if random.randint(0, 100) < 20:  # drops the ball occasionally
+            options = [
+                "Whoops, I missed the ball and the rest of my pride ripped it to shreds",
+                "Whoops, as I went to pass it on the ball caught my claws and it deflated"
+            ]
+            await ctx.send(random.choice[options])
+        else:
+            with open("data.json", "r") as data_file:
+                data = json.load(data_file)
+                catchers = data["catch"]
+            if ctx.author.bot:
+                print("Bot = True")
+                await asyncio.sleep(random.randrange(2, 7))
+            catcher = catchers[str(random.choice(range(len(catchers))))]
+            timeout = time.time() + 10
+            while time.time() < timeout:
+                if int(catcher["id"]) in [member.id for member in ctx.guild.members if member.status == discord.Status.online] and not int(catcher["id"]) == 689981551534014576:
+                    break
+                catcher = catchers[str(random.choice(range(len(catchers))))]
+            await ctx.send(f"{ctx.author.mention}, I whacked the ball with my paw over to <@{catcher['id']}> ...")
+            if catcher.get("action") is not None:  # checks if bot requires an additional action to be able to catch
+                await ctx.send(f"{catcher['action']}")
