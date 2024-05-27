@@ -34,21 +34,21 @@ class Basic(commands.Cog):
             if length == "pi" or length == "🥧" or \
                     ("." in length and length == str(round(math.pi, len(length.split(".")[1])))):
                 roar = random.choice(["R🥧O🥧A🥧R", "```\n  R\nR   O\n  A\n```"])
-            elif int(length) == 69:
+            elif int(eval(length)) == 69:
                 roar = ':rolling_eyes:'
-            elif int(length) == 666:
+            elif int(eval(length)) == 666:
                 roar = ':japanese_ogre:'
-            elif int(length) <= 0:
+            elif int(eval(length)) <= 0:
                 roar = 'How would I roar for zero or negative length!?'
-            elif int(length) > 999:
+            elif int(eval(length)) > 999:
                 roar = 'I can\'t roar for that long!'
 
             # Normal Roar
             else:
                 roar = 'R'
-                for i in range(int(length)):
+                for i in range(int(eval(length))):
                     roar += 'o'
-                for i in range(int(length)):
+                for i in range(int(eval(length))):
                     roar += 'a'
                 roar += 'r'
 
