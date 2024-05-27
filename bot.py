@@ -38,6 +38,7 @@ class Leo(commands.Bot):
 
     # Send Errors to Log
     async def on_command_error(self, ctx, exception):
+        print(exception)
         if isinstance(exception, commands.errors.MissingRequiredArgument):  # Capture for missing argument error
             await ctx.send(
                 'Oh nee!, You\'ve missed a required argument for this command! This command will have its own'
