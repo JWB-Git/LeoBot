@@ -2,6 +2,7 @@ from discord.ext import commands
 from constants import *
 import math
 import random
+import json
 
 
 class Basic(commands.Cog):
