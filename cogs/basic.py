@@ -3,6 +3,7 @@ from constants import *
 import math
 import random
 import json
+import time
 
 
 class Basic(commands.Cog):
