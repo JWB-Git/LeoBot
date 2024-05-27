@@ -4,6 +4,7 @@ import math
 import random
 import json
 import time
+import discord
 
 
 class Basic(commands.Cog):
