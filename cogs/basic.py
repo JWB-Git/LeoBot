@@ -64,7 +64,7 @@ class Basic(commands.Cog):
                 "Whoops, I missed the ball and the rest of my pride ripped it to shreds",
                 "Whoops, as I went to pass it on the ball caught my claws and it deflated"
             ]
-            await ctx.send(random.choice[options])
+            await ctx.send(random.choice(options))
         else:
             with open("data.json", "r") as data_file:
                 data = json.load(data_file)
